@@ -10,26 +10,33 @@ import UIKit
 
 class TweetsViewController: UIViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+  @IBOutlet weak var tableView: UITableView!
 
-        // Do any additional setup after loading the view.
-    }
+  var tweets: [Tweet]?
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
+  override func viewDidLoad() {
+    super.viewDidLoad()
 
-    /*
-    // MARK: - Navigation
+    TwitterClient.sharedInstance?.homeTimeline(success: { (tweets: [Tweet]) in
+      self.tweets = tweets
+      self.tableView.reloadData()
+    }, failure: { (error: Error) in
+      print("Error getting tweets: \(error)")
+    })
+  }
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+  override func didReceiveMemoryWarning() {
+    super.didReceiveMemoryWarning()
+  }
+
+  /*
+  // MARK: - Navigation
+
+  // In a storyboard-based application, you will often want to do a little preparation before navigation
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+      // Get the new view controller using segue.destinationViewController.
+      // Pass the selected object to the new view controller.
+  }
+  */
 
 }

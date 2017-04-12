@@ -25,7 +25,7 @@ class LoginViewController: UIViewController {
   @IBAction func onLoginButtonClicked(_ sender: Any) {
     TwitterClient.sharedInstance?.login(success: { () in
       
-      TwitterClient.sharedInstance?.verifyCredentials(success: { (user: User) in
+      /*TwitterClient.sharedInstance?.verifyCredentials(success: { (user: User) in
 
         //print("User: \(user.name!)")
         print("Screen Name: @\(user.screenName!)")
@@ -33,15 +33,7 @@ class LoginViewController: UIViewController {
 
       }, failure: { (error: Error) in
         print("Error getting current user: \(error)")
-      })
-
-      TwitterClient.sharedInstance?.homeTimeline(success: { (tweets: [Tweet]) in
-        for tweet in tweets {
-          print("Tweet: \(tweet.text)")
-        }
-      }, failure: { (error: Error) in
-        print("Error getting tweets: \(error)")
-      })
+      })*/
 
       self.performSegue(withIdentifier: "loginSegue", sender: nil)
 
