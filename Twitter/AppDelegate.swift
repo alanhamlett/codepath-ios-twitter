@@ -19,6 +19,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Override point for customization after application launch.
 
     TwitterClient.setup()
+
+    if (User.currentUser != nil) {
+      let storyboard = UIStoryboard(name: "Main", bundle: nil)
+      let viewController = storyboard.instantiateViewController(withIdentifier: "TweetsNavigationController")
+      window?.rootViewController = viewController
+    }
     
     return true
   }

@@ -21,23 +21,18 @@ class LoginViewController: UIViewController {
   }
 
   @IBAction func onLoginButtonClicked(_ sender: Any) {
+    TwitterClient.sharedInstance?.login(success: { () in
+      TwitterClient.sharedInstance?.verifyCredentials(success: { (user: User) in
 
-    if (User.currentUser != nil) {
-      self.performSegue(withIdentifier: "loginSegue", sender: nil)
-    } else {
-      TwitterClient.sharedInstance?.login(success: { () in
-        TwitterClient.sharedInstance?.verifyCredentials(success: { (user: User) in
+        User.currentUser = user
+        self.performSegue(withIdentifier: "loginSegue", sender: nil)
 
-          User.currentUser = user
-          self.performSegue(withIdentifier: "loginSegue", sender: nil)
-
-        }, failure: { (error: Error) in
-          print("Error getting current user: \(error)")
-        })
-      }, failure: { (error: Error?) in
-        print("Error Logging In: \(error?.localizedDescription)")
+      }, failure: { (error: Error) in
+        print("Error getting current user: \(error)")
       })
-    }
+    }, failure: { (error: Error?) in
+      print("Error Logging In: \(error?.localizedDescription)")
+    })
   }
 
 }
