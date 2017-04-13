@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TweetsViewController: UIViewController {
+class TweetsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
   @IBOutlet weak var tableView: UITableView!
 
@@ -16,6 +16,9 @@ class TweetsViewController: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
+
+    tableView.delegate = self
+    tableView.dataSource = self
 
     TwitterClient.sharedInstance?.homeTimeline(success: { (tweets: [Tweet]) in
       self.tweets = tweets
@@ -25,12 +28,25 @@ class TweetsViewController: UIViewController {
     })
   }
 
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    return tweets?.count ?? 0
+  }
+
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    let cell = tableView.dequeueReusableCell(withIdentifier: "TweetCell") as! TweetCell
+    cell.tweet = tweets?[indexPath.row]
+    return cell
+  }
+
   @IBAction func onLogoutButton(_ sender: Any) {
     TwitterClient.sharedInstance?.logout()
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     let storyboard = UIStoryboard(name: "Main", bundle: nil)
     let viewController = storyboard.instantiateViewController(withIdentifier: "LoginViewController")
     appDelegate.window?.rootViewController = viewController
+  }
+
+  @IBAction func onNewButton(_ sender: Any) {
   }
 
   override func didReceiveMemoryWarning() {
