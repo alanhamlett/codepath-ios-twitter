@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       window?.rootViewController = viewController
     }
 
-    NotificationCenter.default.addObserver(forName: TwitterClient.userDidLogout, object: nil, queue: OperationQueue.main) { (Notification) in
+    NotificationCenter.default.addObserver(forName: TwitterClient.userDidLogoutNotification, object: nil, queue: OperationQueue.main) { (Notification) in
       let storyboard = UIStoryboard(name: "Main", bundle: nil)
       let viewController = storyboard.instantiateInitialViewController()
       self.window?.rootViewController = viewController
