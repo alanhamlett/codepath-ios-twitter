@@ -6,6 +6,7 @@ Submitted by: Alan Hamlett
 
 Time spent: [coming soon][time spent coding]
 
+
 ## User Stories
 
 ### The following **required** functionality is complete:

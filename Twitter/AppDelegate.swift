@@ -19,6 +19,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Override point for customization after application launch.
 
     TwitterClient.setup()
+
+    //if (User.currentUser != nil) {
+      
+    //}
     
     return true
   }
