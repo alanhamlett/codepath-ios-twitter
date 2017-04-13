@@ -83,7 +83,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="4h" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UmS-ZX-wIy">
-                                                    <rect key="frame" x="294" y="19" width="18" height="17"/>
+                                                    <rect key="frame" x="273" y="19" width="39" height="17"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" red="0.4027998096" green="0.4027998096" blue="0.4027998096" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -130,6 +130,8 @@
                                             <outlet property="avatarImageView" destination="rtz-iZ-wDz" id="efZ-F5-A1G"/>
                                             <outlet property="createdAtLabel" destination="UmS-ZX-wIy" id="26E-hL-Eu2"/>
                                             <outlet property="nameLabel" destination="TtF-l8-MEj" id="bep-Ot-xJ8"/>
+                                            <outlet property="retweetedByImageView" destination="LcL-oC-Voe" id="svj-Uj-bCs"/>
+                                            <outlet property="retweetedByNameLabel" destination="QnC-wi-gmT" id="FAU-rV-fr6"/>
                                             <outlet property="screenNameLabel" destination="ke0-X4-Exe" id="vhk-nF-aNC"/>
                                             <outlet property="tweetContentLabel" destination="sCn-UU-dOf" id="Euf-Ha-MOS"/>
                                         </connections>
