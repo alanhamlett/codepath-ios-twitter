@@ -25,6 +25,14 @@ class TweetsViewController: UIViewController {
     })
   }
 
+  @IBAction func onLogoutButton(_ sender: Any) {
+    TwitterClient.sharedInstance?.logout()
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+    let viewController = storyboard.instantiateViewController(withIdentifier: "LoginViewController")
+    appDelegate.window?.rootViewController = viewController
+  }
+
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
   }

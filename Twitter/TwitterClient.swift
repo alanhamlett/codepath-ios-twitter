@@ -11,6 +11,9 @@ import BDBOAuth1Manager
 
 class TwitterClient: BDBOAuth1SessionManager {
 
+  // Notifications Sent
+  static let userDidLogout = NSNotification.Name(rawValue: "userDidLogout")
+
   static var sharedInstance: TwitterClient?
   static let apiBaseUrl: URL = URL(string: "https://api.twitter.com")!
 
@@ -37,7 +40,6 @@ class TwitterClient: BDBOAuth1SessionManager {
     loginSuccess = success
     loginFailure = failure
 
-    // make sure we are logged out before logging in
     deauthorize()
 
     fetchRequestToken(withPath: "oauth/request_token", method: "GET", callbackURL: URL(string:"twitterdemo://oauth"), scope: nil, success: { (requestToken: BDBOAuth1Credential?) in
@@ -50,6 +52,13 @@ class TwitterClient: BDBOAuth1SessionManager {
     }, failure: { (error: Error?) in
       failure(error!)
     })
+  }
+
+  func logout() {
+    User.currentUser = nil
+    deauthorize()
+
+    NotificationCenter.default.post(name: TwitterClient.userDidLogout, object: nil)
   }
 
   func handleAppOpenUrl(url: URL) {
