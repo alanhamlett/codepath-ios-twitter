@@ -12,7 +12,10 @@ class TweetCell: UITableViewCell {
 
   var tweet: Tweet! {
     didSet {
+      nameLabel.text = tweet.userName
+      screenNameLabel.text = "@\(tweet.userScreenName)"
       tweetContentLabel.text = tweet.text
+      avatarImageView.setImageWith(tweet.userImageURL!)
     }
   }
 
@@ -23,14 +26,16 @@ class TweetCell: UITableViewCell {
   @IBOutlet weak var tweetContentLabel: UILabel!
 
   override func awakeFromNib() {
-      super.awakeFromNib()
-      // Initialization code
+    super.awakeFromNib()
+
+    avatarImageView?.layer.cornerRadius = 5
+    avatarImageView?.clipsToBounds = true
   }
 
   override func setSelected(_ selected: Bool, animated: Bool) {
-      super.setSelected(selected, animated: animated)
+    super.setSelected(selected, animated: animated)
 
-      // Configure the view for the selected state
+    // Configure the view for the selected state
   }
 
 }
