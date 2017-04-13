@@ -13,8 +13,6 @@ class LoginViewController: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-
-    // Do any additional setup after loading the view.
   }
 
   override func didReceiveMemoryWarning() {
@@ -23,23 +21,23 @@ class LoginViewController: UIViewController {
   }
 
   @IBAction func onLoginButtonClicked(_ sender: Any) {
-    TwitterClient.sharedInstance?.login(success: { () in
-      
-      /*TwitterClient.sharedInstance?.verifyCredentials(success: { (user: User) in
 
-        //print("User: \(user.name!)")
-        print("Screen Name: @\(user.screenName!)")
-        print("Screen Name: @\(user.profileUrl)")
-
-      }, failure: { (error: Error) in
-        print("Error getting current user: \(error)")
-      })*/
-
+    if (User.currentUser != nil) {
       self.performSegue(withIdentifier: "loginSegue", sender: nil)
+    } else {
+      TwitterClient.sharedInstance?.login(success: { () in
+        TwitterClient.sharedInstance?.verifyCredentials(success: { (user: User) in
 
-    }, failure: { (error: Error?) in
-      print("Error Logging In: \(error?.localizedDescription)")
-    })
+          User.currentUser = user
+          self.performSegue(withIdentifier: "loginSegue", sender: nil)
+
+        }, failure: { (error: Error) in
+          print("Error getting current user: \(error)")
+        })
+      }, failure: { (error: Error?) in
+        print("Error Logging In: \(error?.localizedDescription)")
+      })
+    }
   }
 
 }
